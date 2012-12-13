@@ -1,0 +1,12 @@
+#!/bin/sh
+
+CPP=g++
+
+LIBPATHS="-L/usr/X11R6/lib -L./lib -L./irrlicht-0.14.0/lib/Linux/"
+LIBS="-lIrrlicht -lGL -lGLU -lXxf86vm -lXext -lX11"
+
+OUTFILE=CharbleTwinsty
+
+SOURCES="main.o input.o controlInterface.o config.o spaceobj.o"
+
+$CPP -o $OUTFILE $SOURCES $LIBPATHS $LIBS

@@ -1,0 +1,243 @@
+[12:06] * Icefox has joined #Outsider
+[12:06] <Icefox> Ahoy!
+[12:07] * Mikk^ill hides and pulls his numerous limbs and appendages into a ball
+[12:07] <Siber> Hmm...
+[12:08] <Icefox> Heh heh heh. 
+[12:08] <Icefox> Anyway, I need a spot of advice involving semi-realistic space combat.
+[12:08] <Mikk^ill> somebody came!
+[12:08] <Siber> I take it you liked the game then? ;)
+[12:08] <Icefox> I actually never got to play it; it crashed in Windows. 
+[12:08] <Siber> ...
+[12:08] <Icefox> But indeed, it did inspire me to work on my own game, so yes, I liked it.
+[12:08] <Mjolnir> http://en.wikipedia.org/wiki/Malnutrition 
+[12:08] <Siber> Odd.
+[12:09] <Mikk^ill> ah
+[12:09] <Mikk^ill> well you see, I haven't been suffering from malnutrition for months
+[12:09] <Mjolnir> "An array of afflictions ranging from stunted growth, reduced intelligence and various cognitive abilities, reduced sociability, reduced leadership and assertiveness, reduced activity and energy, reduced muscle growth and strength, and poorer health overall are directly implicated to nutrient deficiencies." 
+[12:09] <Mikk^ill> I even take vitamines occasionally, when I remember to
+[12:10] <Mjolnir> "reduced intelligence and various cognitive abilities"
+[12:10] <Mikk^ill> anyway, I doubt I've ever suffered form malnutrition 
+[12:10] <Mikk^ill> not enough food maybe, but not malnutrition
+[12:10] <Icefox> I should really take vitamins more.  Or eat salad more.
+[12:10] <Icefox> Either one.  ANYWAY...
+[12:10] <Mikk^ill> ;P 
+[12:11] * Mikk^ill likes taking extra doses of C
+[12:11] <Mikk^ill> tasty....
+[12:11] <Icefox> In a vaguely-realistic space combat, is it safe to assume that if you get hit, you're pretty dead?
+[12:11] <Mikk^ill> depends on what you get hit by 
+[12:11] <Mikk^ill> and where
+[12:11] <Mikk^ill> ;P
+[12:11] <Mikk^ill> so no
+[12:11] <Icefox> Weapons include kinetic-kill missiles, high-power lasers, and MAYBE unpowered projectiles.
+[12:12] <Icefox> And it'd make my life a lot simpler if you just died horribly, but it might not make the game as fun.
+[12:12] <Siber> Well...
+[12:12] <Siber> hmm. Maybe.
+[12:12] <Siber> how vaugely realistic? 
+[12:13] <Icefox> 'Cause I'm anal and if there's a step between life and death, I'll have to make the degredation as realistic as possible, including systems damage, screwed up sensors, secondary damage, and all that junk. 
+[12:13] <Mjolnir> The lasers...those probably require some dwell time to get through.
+[12:13] <Icefox> I'm not sure yet.  I suppose it depends on gameplay.
+[12:14] <Icefox> Yes, I'd considered that.  I suspect that lasers will mainly fry your sensors. 
+[12:14] <Mjolnir> Depends on the armoring...whether they consider armor worth the mass.
+[12:14] <Mjolnir> And on the power of the lasers, of course.
+[12:14] <Icefox> My problem is I'd like to make it neat and varied, but also as simple to program as possible. 
+[12:14] <Icefox> I realize these are generally mutually exclusive.  >_>
+[12:15] <Icefox> So it sorta comes down to deciding on as few features as possible, and making them as important as possible. 
+[12:15] <Mjolnir> KK weapons similarly depend on armoring, etc...
+[12:15] <Siber> heh
+[12:16] <Mjolnir> An unarmored target might get a hole poked straight through it, but be only lightly damaged. 
+[12:16] <Icefox> I suspect that at any reasonable velocity, armor won't do much against a KK weapon hitting a medium-small ship.
+[12:17] <Icefox> And I would assume the KK weapon is designed to prevent that.  Hollow-core missile, anyone? 
+[12:17] <Mjolnir> Armor would be effective against "small shot", used to increase the probability of making a hit with a ballistic projectile...
+[12:17] <Icefox> Hmmmm, true.
+[12:18] <Icefox> Okay, so I suppose armor is probably worthwhile. 
+[12:19] <Mjolnir> A reasonable progression of development would be fragmenting missiles for unarmored targets, then armor capable of stopping the fragments, then larger-fragment or unfragmenting missiles...
+[12:19] <Icefox> At least to consider.  What about system damage?  I've already decided screwing up sensors is worth it, 'cause it's also easy (ie just add a random factor to the results they give you) 
+[12:19] <Icefox> True.
+[12:19] <Mjolnir> After that, who knows? Depends on what technologies they develop.
+[12:19] <Icefox> I suppose other main systems would be weapons, computers, engines, and life-support. 
+[12:20] <Mjolnir> I've suggested using point defense lasers outside of effective point defense range to blind sensors aimed your way.
+[12:20] <Icefox> Ah, but you'd have to see 'em first.
+[12:21] <Mjolnir> A bit like shining a laser pointer at a camera. You can't see the pointer itself, just a big spot. 
+[12:21] <Icefox> Indeed.
+[12:21] <Mjolnir> Well, yeah...this is space, though. Where are they going to hide?
+[12:21] <Icefox> Dammit, hadn't quite considered it that much.
+[12:22] <Icefox> IR sensors would be able to pick out just about anything, even if it was largely powered down, right? 
+[12:22] <Mjolnir> Yeah. Especially in space, where it'd be easy to cool the sensors down to cryogenic temperatures.
+[12:22] <Siber> Unless it was chilled to about, what, 3 kelvin?
+[12:23] <Siber> Hard to power down that much. 
+[12:23] <Icefox> I might have to say that that doesn't exist purely for gameplay reasons.  I like my stealthiness too much.
+[12:23] <Mjolnir> If you're chilling the hull to 3 K, where's the heat from life support, lighting, etc going? 
+[12:23] <Siber> exactly.
+[12:23] <Icefox> Um...  to the kitchen grills?
+[12:23] <Mjolnir> And the power required to keep the heat from the ship itself away from its outer hull...doing so makes more heat. 
+[12:23] <Icefox> "Battle stations!  Battle stations!  And someone fire up the rotissary chicken!"
+[12:24] <Mjolnir> ...
+[12:24] <Siber> ...
+[12:25] <Icefox> Heheheh.  Anyway, I'll just make an executive decision (it's my game, after all) and say that IR sensors are bad enough to only pick up active engines/generators. 
+[12:25] <Mjolnir> You could say away from open-space environments. Have the combat be in and around an asteroid mining complex...lots of shipping containers, robotic cargo haulers, etc.
+[12:25] <Icefox> Nah, that requires complexity, and my graphics card frankly isn't that good. 
+[12:25] <Icefox> Maybe later.
+[12:25] <Mjolnir> In other words, a noisy environment with lots of things that are easier to imitate than blank, cold space.
+[12:26] <Icefox> Nice idea.  I'll hang on to it. 
+[12:26] <Mjolnir> You could also drop the space idea and make it deep-sea...
+[12:26] <Icefox> Now THAT would rock.
+[12:26] <Icefox> Again, later.
+[12:26] <Icefox> ...is anyone logging this? 
+[12:27] <Siber> Allways
+[12:27] <Icefox> Awesome.  Could I convince you to send it to the gmail account once I'm done annoying you all?
+[12:28] <Siber> Sure. E-mail?
+[12:28] <Siber> and remind me before you leave. I tend to forget things like that. 
+[12:28] <Siber> Ah, "The gmail"
+[12:28] <Siber> kd8?
+[12:29] <Icefox> kylesd8@gmail.com
+[12:29] <Icefox> Yep.
+[12:29] <Siber> k 
+[12:29] <Icefox> Awesome.  Thank ye.
+[12:29] <Icefox> mmmmm... deep-sea though...  I like that.
+[12:30] <Icefox> That makes me happy.  I already have vague outlines for a deep-sea adventure game anyway. 
+[12:30] <Siber> Indeed.
+[12:30] <Icefox> The world doesn't have enough games involving giant squid.
+[12:30] * Siber has outlines for a deep-sea-in-space game.
+[12:31] <Icefox> ...crap!  I'll need models for giant squid.  And dolphins and everything. 
+[12:31] <Icefox> Suck.
+[12:31] <Icefox> See, that's why I like deep space.  Everything is nice geometric shapes.
+[12:31] <Icefox> Oh?  Do tell.
+[12:31] <Mjolnir> Another idea...make it take place in a gas giant. Saturn, maybe. 
+[12:32] <Icefox> I like that too.  Hell, it could be on Venus.
+[12:32] <Siber> Well, the basic idea is that FTL is via a 'hyperspace' filled with some kind of fluid that limits vision, restricts top speed, and compresses engagment distances. 
+[12:32] <Siber> Esentaily, allows the standard up close slugfest
+[12:32] <Icefox> Which, come to think of it, is a really good place to testbed gas-giant-habitat technology.
+[12:32] <Mjolnir> Well...Saturn would be a lot easier, really. 
+[12:32] <Icefox> Anyway, go on.
+[12:33] <Icefox> Venus is closer.  But you're right, Saturn has all those nice moons and volatile chemicals and stuff.
+[12:33] <Siber> Which allows the main goal of the game, which is highly detailed ship desings, and similarly detailed ship damage. 
+[12:33] <Icefox> So combat is possible in hyperspace?
+[12:33] <Siber> Indeed.
+[12:33] <Mjolnir> There are layers where pressure is a few atmospheres and temperature is in the range 0-100C...
+[12:33] <Mjolnir> Venus is hot. Very, very hot.
+[12:33] <Siber> Combat mostly happens in hyperspace.
+[12:33] <Icefox> Awesome.  Sounds fun to play and a pain in the ass to program.
+[12:33] <Siber> yeah... probably correct. 
+[12:34] <Icefox> Venus also has a very dense atmosphere, with a layer with vaguely normal pressure and temperature.
+[12:34] <Siber> To take a system you have to clear out its defenders in hyperspace, then two a realspace attack force through. 
+[12:34] <Icefox> You get more solar energy, and are presumably easier to get to, as well.
+[12:34] <Mjolnir> Anyway, Saturn: clouds, higher temperature surroundings, including a cold sky and hot "sea"... 
+[12:34] <Mjolnir> Buoyant structures are possible...
+[12:34] <Icefox> How does hyperspace affect weapon design and engagement tactics?  Is there anything to hide behind apart from distance?  How well can ships maneuver? 
+[12:35] <Siber> Ships built for realspace combat are not suited for hyperspace combat, and visa versa.
+[12:35] <Mjolnir> Venus might have layers that are cool enough.
+[12:36] <Mjolnir> But in atmosphere dense enough to float in...it seems unlikely. 
+[12:36] <Siber> Ships can manuver at will, in varying degress depending on desing. combat is much more up close and personal there, because the fluid reduces weapon effectivness at range.
+[12:36] * Mjolnir searches for info on the Venusian atmosphere 
+[12:37] <Icefox> Mjolnir: I've heard that this is the case, but can't back it up with actual info.
+[12:37] <Siber> Lasers become difused, missles need to constantly thrust against the drag, projectiles lose energy with distance. 
+[12:37] <Icefox> Siber: What kind of weapons are effective?  What kind of speeds are feasable, compared to weapon range?  Do ships have specific vulnerabilities?
+[12:38] <Icefox> Do ships with hyperspace engines also need to thrust constantly?  What does that do to their effective range? 
+[12:38] <Mjolnir> Hmm. Minimal temperature, that at the cloudtops, is 228K...
+[12:39] <Siber> Speed/range is an issue that would be decided durring game balancing. whatever is fun. Ships may have desing flaws, but I'm not sure what you mean. 
+[12:40] <Icefox> I mean, are hyperspace motors big-stikey-outy-things that can't be armored?  Do they make the universe implode if they blow up?  Does the fluid carry /shockwaves/ as well as water?
+[12:40] <Mjolnir> Carbonyl sulfide, and water in the clouds... 
+[12:40] <Icefox> Think Honor Harrington; the way ships are built fundamentally influences combat.
+[12:40] <Siber> You can only acess hyperspace at one or two points in a solar system, usualy near the largest planet. there you can open a portal to the hyperspace realm and enter it. same with exiting it. 
+[12:41] <Siber> once in, the same engine desings as you used in realspace are effective, but you do need to constantly thrust against the drag.
+[12:42] <Icefox> Streamlined ships are your friend then.
+[12:42] <Siber> Yeah, they are.
+[12:42] <Icefox> Can you thrust against the fluid with propellors?  Does the fluid contain any useful matter that, eg, can be combusted?
+[12:43] <Siber> the fluidis not as thick as water, but thicker then air, I think. 
+[12:43] <Siber> As far as science in the game knows, the fluid isnt usefull for much.
+[12:43] <Icefox> No gravity I presume, so no buoyancy.  Apart from that, it sounds like a game of space-borne submarines.  ^_^ 
+[12:44] <Siber> Somewhat.
+[12:44] <Siber> the restrictions are not as extreme as they are on submarines, and there is no sea floor.
+[12:45] <Icefox> External pressure is low as well, I presume. 
+[12:45] <Siber> yeah.
+[12:45] <Icefox> Are there currents?  Turbulance?  Big objects of any sort?
+[12:45] <Mjolnir> What happens when you open the airlock?
+[12:46] <Mjolnir> Does the atmosphere diffuse into the fluid? Form a bubble? 
+[12:46] <Mjolnir> What happens if you step outside without a spacesuit?
+[12:46] <Siber> There are big objects, things with signifigant mass project a effect in hyperspace, that of a large glowing white sphere. 
+[12:47] <Siber> Mjol: Probably it difuses, and you drown.
+[12:47] <Mjolnir> What if you try to put it in a jar and take it into realspace?
+[12:48] <Mjolnir> And how hot/cold is it?
+[12:48] <Siber> it disolves into a mass of high energy subatomic particles. 
+[12:48] <Icefox> Are those spheres solid?  Do they exert any effect on things around them?
+[12:48] <Icefox> Can you draw energy from them?
+[12:49] <Mjolnir> So if a ship gets its hull breached in hyperspace, it pretty much has to stay there or get vaporized by the fluid inside it when it returns? 
+[12:49] <Siber> They mirror the movement of thier realspace counterparts, and seem to drag the surrounding space around them with them in an effect somewhat similar to gravity without actually attracting stuff. Similar to a current. 
+[12:50] <Siber> Mjol: probably
+[12:50] <Mjolnir> How do ships enter/leave without "letting fluid out" into the realspace around them?
+[12:50] <Mjolnir> Am I asking too many questions? 
+[12:51] <Icefox> Are they material objects, or can you sail right through them?  Are they substantial/bright enough to hide behind?
+[12:51] <Siber> They do, it makes for quite a lightshow.
+[12:52] <Siber> You are not, but you are just asking ones I dont have anwsers to. ;) 
+[12:52] <Siber> Ice: You get too close to one, you vaporize suddenly.
+[12:52] <Mjolnir> Rescue operations (recovering survivors) and coming back in after external repairs could be a bit challenging. Have them enter a temporary airlock, hose off, get out of the suits and enter another airlock, make damn sure there's no fluid left on them, and then go into the ship... 
+[12:52] <Icefox> Awesome.
+[12:53] <Siber> they are opaque, but too big for any good game of hide and seek.
+[12:53] <Icefox> And I don't know how energetic this fluid is when it dissolves, but it might not be that big of a problem. 
+[12:53] <Icefox> Can the fluid evaporate?
+[12:53] <Icefox> How viscous is it?
+[12:53] <Siber> Hmm...
+[12:53] <Icefox> Does it interact with normal chemistry in any significant way (can you mix it with water)? 
+[12:54] <Siber> No, it doesnt.
+[12:54] <Siber> [12:48] <Icefox> Can you draw energy from them?
+[12:55] <Siber> Yes, they shine brightly enough that they provide good solar power.
+[12:55] <Icefox> Ooh, yes, that's a good one. 
+[12:55] <Icefox> Shibby.
+[12:55] <Siber> As long as you are close enough to them.
+[12:55] <Icefox> Are there permenant hyperspace-stations?
+[12:56] <Icefox> Those'd be cool.
+[12:56] <Siber> Yes, usualy a number of them are set up around the entry point. they get good power and dont need to wory about orbits or gravity, and support commerce and fleets. 
+[12:56] <Siber> [12:48] <Mjolnir> And how hot/cold is it?
+[12:56] <Icefox> Oh, and do propellors work?  Are there cavitation effects?  What about sonar/hydrophones?
+[12:56] <Mikk^ill> emergency room is one goddamn dumb series 
+[12:57] <Icefox> Are we asking too many questions yet, or shall we continue?
+[12:57] <Siber> keep asking, I'm trying to keep up ;)
+[12:57] <Icefox> Well, I'm taking a break for a few minutes to program, so. 
+[12:58] <Siber> Depends on where you are. near a mass things get kinda warm, though I'm not sure how much. temputure incresses as you get closer, of cource. out in 'deep space' things get close to absolute zero. 
+[12:58] <Siber> Propellors... probably work, but not very well.
+[12:59] <Icefox> Really?  It's denser than air.  Propellors/turbines should do a decent job...
+[12:59] <Mjolnir> Permanent hyperspace stations would be able to get a hell of a lot of power by pulling fluid into realspace... 
+[13:00] <Icefox> As long as you don't need to use that hyperspace point, Mjolnir.
+[13:00] <Siber> Sonar, I'm debating over. It might work, it might not... just not sure.
+[13:00] <Mjolnir> On the realspace side, that is. 
+[13:00] <Mjolnir> Is it an actual point? If so, how does  a non-point-sized ship get through?
+[13:00] <Siber> Mjolnir: I hadnt thought of that...
+[13:00] <Icefox> If you can't go through the realspace side, the hyperspace side isn't too useful.  And it might take a lot of power to perform the transition. 
+[13:01] <Mjolnir> Maybe it's a point-sized defect that the ship "pries open". In which case the station would have to go on standby power or something while the ship uses the point.
+[13:01] <Siber> it can be defined as a point, in that it is centered as one, but it can be opened at any size you please, depending on how much power you put into it. 
+[13:02] <Icefox> Oooo, here's an idea that may or may not be sane...
+[13:03] <Siber> Typicaly, you want to open it as small as possible at the last possible second and be aproaching it at a good clip, to reduce the amount of radiation sheilding you need on the aproach. 
+[13:03] <Mjolnir> If the machinery to open a point is high-power or just physically large, the stations might do the opening for smaller ships that can't do it themselves...
+[13:03] <Mjolnir> This could also provide a method of keeping the fluid from coming into realspace along with exiting ships. The station confines the fluid. 
+[13:03] <Icefox> If you gain energy from hyperspace by this fluid breaking down, thermodynamics (which may or may not matter) says that hyperspace has to lose energy.
+[13:04] <Mjolnir> Or provides shielding the ship doesn't carry. 
+[13:04] <Icefox> So maybe opening a point cools down the area around it.
+[13:04] <Siber> most simply, it would reduce the density of the fluid around the point.
+[13:05] <Siber> Alright, crackpot time. 
+[13:05] <Icefox> True, but that kinda implies there's a finite amount.
+[13:05] <Icefox> Which, if it's a finite universe, I suppose there must be.  Okay, TD is happy.
+[13:05] <Mjolnir> In real-world gases, expansion (reduction of density) without energy input cools the gas. 
+[13:06] <Icefox> Well then, that's okay.
+[13:06] <Icefox> But if we postulate that energy can be exchanged between the universes, where is the energy that causes planet-artifacts coming from?
+[13:06] <Siber> I had heard, and I dont remeber where, that there was a theroy that gravity was weaker then it should be because it is not confined to radiation in 3 dimensions and radiated across in something like 11. 
+[13:07] <Mjolnir> It's pretty much an attribute of any kind of collection of interacting particles/objects.
+[13:07] <Icefox> Hmm, maybe the planets-effects simply annihilate anything in contact with 'em, and thus annihilate the fluid as well, producing that energy. 
+[13:08] <Siber> Lets say that this, or something similar is the case. lets also say that these wayward gravitons, or some of them, end up in this hyperspace.
+[13:08] <Mjolnir> The gravity pulls the fluid closer to realspace until it becomes unstable and decays, producing energy? 
+[13:08] <Siber> prehaps they would be the root source of the fluid, and even the planet-effects.
+[13:09] <Siber> [/crackpot]
+[13:09] <Icefox> That works.  The nice thing about quantum physics is you can blame just about anything on it. 
+[13:09] <Siber> heh
+[13:09] <Icefox> If it weren't for that, our sci-fi would have to involve a lot more singularities, which would get tiresome.
+[13:10] <Mjolnir> In which case, you might be able to access realspace through one of those big glowing balls, if it weren't for the annoying vaporization problem... 
+[13:10] <Mjolnir> Hmm. Even if you couldn't send ships through, you might be able to send EM transmissions through...
+[13:10] <Siber> Idea is that in large enough concentrations, this fluid undegoes a change to a highly energetic, stable form that emits large amounts of energy. hence the planets. 
+[13:11] <Icefox> Mjolnir: No, too much noise.  'Sides, they'd come out inside the planet.
+[13:11] <Mjolnir> Or perhaps better, gravity wave transmissions.
+[13:11] <Icefox> That might work.
+[13:11] <Siber> So far as I can tell, none of this allows artifical gravity on ships. oh well. I can do without. 
+[13:11] <Mjolnir> Yeah, that's why I thought of the gravity waves...otherwise, they'd have to be extremely, super long wavelength, and very low data rate.
+[13:12] <Mjolnir> Though that might be the case for G-waves as well... 
+[13:13] <Mjolnir> Rather than sending a courier through a point to dump its data cargo and pick up a fresh one, just have it make a close pass to a planet in the system (from the hyperspace side) and a blast gravity wave transmission at it. 
+[13:13] <Siber> crompressing the fluid sufficently would provide a nice power source, if it wasnt for the fact that it would destroy the vessel...
+[13:14] <Siber> *compressing.

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<fwdThrust data="w" />
+<backThrust data="s" />
+<leftThrust data="a" />
+<rightThrust data="d" />
+<upThrust data="e" />
+<downThrust data="q" />
+
+<fwdRoll data="o" />
+<backRoll data="l" />
+<leftRoll data="k" />
+<rightRoll data=";" />
+<leftTwist data="i" />
+<rightTwist data="p" />
+
+<fire data="n" />
+<quit data="b" />

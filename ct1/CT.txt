@@ -1,0 +1,37 @@
+This is a game.  It is written in C++.  It exists mainly to learn C++ and the
+Irrlicht engine, and find out if they are worth using for other things, or if
+it's too painful.  It is called Charble Twinsty.
+
+You have a space ship, you fly around, and you shoot things.  You might shoot
+them with missiles or lasers.
+
+It will have inertia and 6 degrees of freedom --more or less realistic
+physics.  Hmmm.... QWEASD control lateral movement, IOPKL; control rotation,
+space/alt/CMVN/enter/shift/tab/#'s as function keys...  That could be
+interesting.
+
+
+THINGS I WILL NEED:
+Meshes and textures: Wings3D
+Sound/music: SDL, Fmod, or OpenAL
+
+
+
+Other things to look at:
+Graphics:
+Orge  --documentation!
+
+Sound:
+Fmod
+OpenAL
+
+Physics:
+Newton Game Dynamics
+Novodex
+ODE
+Tokamak
+
+
+Games:
+Galactic Dream
+Silent Depth

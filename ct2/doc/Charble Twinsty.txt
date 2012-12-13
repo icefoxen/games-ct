@@ -1,0 +1,132 @@
+Charble Twinsty
+Vaguely realistic space combat.
+
+Weapons:
+Missile
+Laser
+Engine
+
+Defenses:
+Armor
+Point-defense lasers
+Jammers (?)
+Decoys (?)
+
+Sensors:
+Infrared
+Radar
+Lidar
+Probes (?)
+Eyeballs
+
+Limiting factors:
+Fuel
+Energy/heat (may be same thing)
+Missile ammo
+Acceleration
+
+
+Weapons:
+Laser:
+Lasers probably have an effective range of less than half a light second and a
+linear dropoff of power.
++Low to medium damage
++Might do lots of damage to sensors, or certain sensors, or cause temporary blindness
++Hit instantly
++Infinite ammo
+-Use energy
+-Must hit precisely
+-Damage decreases with range
+
+Missile:
++Very high damage (a direct hit is generally a kill)
++Can be guided
++Can have proximity warheads or fragmentation damage
+-Take time to travel
+-Easy to see coming (active engines)
+-Limited ammo
+-Can be shot down
+-Limited range/fuel capacity
+
+Engine:
++V. powerful at close range
++Plentiful ammo/fuel
++Wide cone of effect
++Nice weapon of last resort
+-Short range
+-V. visible
+
+
+Sensors:
+Infra-red:
++Passive, can't be detected
++Takes little energy
+-Only sees energy emissions (active engines, lasers, etc)
+-Not very precise
+
+Radar:
++Medium-long range 
++Wide area
++Moderately precise
+-Active, can be detected by other radars
+-Uses fair amount of energy
+
+Lidar:
++Very long range
++Very precise
+-Active, can be detected by other lidars
+-Narrow angle, ~30 degree cone
+-Uses quite a bit of energy
+
+Eyeballs:
++Can see engine trails at long distance
++Probably can't be jammed (maybe by lasers or lidar-jammers...?)
+-Can't see anything else
+
+Probe:
+Not really a sensor, but basically a missile with sensors attached to it.  It
+zooms out, pings radar/lidar like mad until it gets destroyed.  It might
+actually nicely double as a decoy, then.
+They may not actually be incorperated in the game; oddball unbalancing factor.
++It gets shot, not you
++It finds the enemy
+-Limited number
+-Could announce your general direction
+
+
+Defenses:
+Armor:
+
+Point-defense lasers:
+
+
+Jammers:
+
+Decoys:
+
+
+Strategic factors:
+Fuel:
+You have a limited amount of fuel.  Probably enough for at least 10 minutes of
+constant thrust, but it's still something you want to be careful of.  Fuel is
+also fairly heavy, though the exact efficiency of your engines will depend on
+gameplay.
+
+Energy/heat:
+I've decided to combine these since they really work the same way.  If you
+have not enough energy or too much heat, you have to wait to recharge or cool
+off.
+Let's just call it energy, then.  Energy is used for sensors, weapons, and
+countermeasures.  You have to both store it and generate it.  Generating
+energy lights up infra-red sensors, which generally means you don't want to do
+it much.
+
+Missile ammunition:
+You have a limited number of missiles.  They may well come in racks of 6, and
+you might be able to fit up to 8 racks of them without TOO much trouble.
+Still, make them count.
+
+Max acceleration:
+The maximum acceleration for a manned craft is 5-10 G's, or 50-100 meters per
+second squared.  The maximum acceleration for unmanned missiles is between 10
+and 50 times greater; Cold War era ICBM's could push 200 G's during boost.

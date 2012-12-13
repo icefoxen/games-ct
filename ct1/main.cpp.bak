@@ -1,0 +1,140 @@
+/* main.cpp
+ * Main file of Charble Twinsty.
+ * Setup, shutdown, that good stuff.
+ *
+ * Simon Heath
+ * 15/2/2006
+ */
+
+#include <irrlicht.h>
+
+using namespace std;
+
+using namespace irr;
+using namespace core;
+using namespace scene;
+using namespace video;
+using namespace io;
+using namespace gui;
+
+#include <iostream>
+
+
+#include "ct.h"
+#include "input.h"
+#include "config.h"
+
+
+IrrlichtDevice* irrdev;
+KeyboardController* event;
+ILogger* logger;
+
+void mainloop()
+{
+   bool keepOnTruckin = true;
+   IVideoDriver *driver = irrdev->getVideoDriver();
+   ISceneManager *smgr = irrdev->getSceneManager();
+   IGUIEnvironment *guienv = irrdev->getGUIEnvironment();
+
+   // Add text
+   guienv->addStaticText( L"Hello world!  Charble Twinsty.",
+			 rect<int>( 50, 50, 300, 70 ), true );
+
+   // Add a mesh
+   /*
+   IAnimatedMesh *mesh = smgr->getMesh( "data/meshes/sydney.md2" );
+   IAnimatedMeshSceneNode *node = smgr ->addAnimatedMeshSceneNode( mesh );
+
+   // We disable lighting, set the animation loop, and do the texture
+   // thang.  And add it to the event handler.
+   //
+   if( node )
+   {
+      node->setMaterialFlag( EMF_LIGHTING, false );
+      node->setFrameLoop( 0, 300 );
+      node->setMaterialTexture( 0, driver->getTexture( "data/textures/sydney.bmp" ) );
+
+	 
+
+//      event->setThing( node );
+   }
+   */
+
+   // A skybox makes life SLOW.  This makes me sad.  ;_;
+   /*
+   ITexture* skytex = driver->getTexture( "data/textures/sky2.bmp" );
+   if( skytex )
+   {
+      smgr->addSkyBoxSceneNode( skytex, skytex, skytex, skytex, skytex, skytex );
+   }
+   */
+
+   /* Add camera at ... [facing ...] */
+   ICameraSceneNode* camera = 
+      smgr->addCameraSceneNode( 0, vector3df(0,0,40) );
+
+//   camera->setTarget( node->getAbsolutePosition() );
+
+/*
+   ISceneNodeAnimator* anim = smgr->createFlyCircleAnimator(
+      vector3df(0,0,0), 40.0f );
+   node->addAnimator( anim );
+   anim->drop();
+*/
+
+
+   /* Run the mainloop. */
+   while( /* keepOnTruckin && */ irrdev->run() )
+   {
+      // Set the camera to face the model
+      camera->setTarget( node->getAbsolutePosition() );
+
+      /* 1st SColor arg is alpha, perhaps... */
+      driver->beginScene( true, true, SColor( 0, 0, 0, 0 ) );
+      smgr->drawAll();
+      guienv->drawAll();
+      driver->endScene();
+   }
+
+}
+
+void dieHorribly()
+{
+   cout << "Died horribly!" << endl;
+   irrdev->drop();
+   exit( 1 );
+}
+
+
+
+int main()
+{
+
+   event = new KeyboardController();
+
+  /* EDT_SOFTWARE works too .
+   * driver, screensize, bitdepth, fullscreen?, stencilbuffer?, vsync?,
+   * eventreciever
+   */
+  E_DRIVER_TYPE ogl = EDT_OPENGL;
+  E_DRIVER_TYPE soft = EDT_SOFTWARE;
+  irrdev = createDevice( ogl, dimension2d<s32>( 800, 600 ), 16,
+			 false, true, false, event );
+
+  logger = irrdev->getLogger();
+
+  irrdev->setWindowCaption( L"Charble Twinsty" );
+
+
+  Config* c = new Config( "testfile.xml" );
+  delete c;
+
+  mainloop();
+
+
+
+  /* Clean up */
+  irrdev->drop();
+
+  return 0;
+}

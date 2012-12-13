@@ -1,0 +1,45 @@
+/* input.h
+   Input stuff.
+
+   Simon Heath
+   17/2/2006
+*/
+
+
+#ifndef _INPUT_H
+#define _INPUT_H
+
+#include <irrlicht.h>
+
+
+using namespace irr;
+using namespace core;
+using namespace scene;
+using namespace video;
+using namespace io;
+using namespace gui;
+
+
+class CTEventReceiver : public IEventReceiver
+{
+
+  private:
+   IAnimatedMeshSceneNode* thing;
+
+   /* Hmmm...
+      Okay.  To start with, we just have one object moving around.
+      So this just holds onto one object and manipulates it.
+      After that, we want a skybox, and then we want the camera to
+      hug the object.
+      Then we add more objects.
+    */
+
+  public:
+   virtual bool OnEvent( SEvent e );
+   virtual void setThing( IAnimatedMeshSceneNode* t );
+   virtual IAnimatedMeshSceneNode* getThing();
+   virtual void moveThing( vector3df v );
+};
+
+
+#endif // _INPUT_H

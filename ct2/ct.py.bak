@@ -1,0 +1,386 @@
+# CharbleTwinsty.py
+# The main game file
+# Yay!
+
+
+from OpenGL.GL import *
+from OpenGL.GLU import *
+
+import pygame
+from pygame.locals import *
+
+from Input import *
+from MeshLoader import *
+from Quaternion import *
+
+# Max distance = 1000 km
+KM = 1000.0
+MAXDISTANCE = 1000 * KM
+
+# Objects collide with things
+OBJECTS = []
+# Effects don't.
+EFFECTS = []
+
+CAMERALOC = [0.0, 0.0, 0.0]
+CAMERAROT = [0.0, 0.0, 0.0]
+
+cameraq = euler2Quaternion( 0.0, 0.0, 0.0 )
+leftq   = euler2Quaternion( 1.0, 0.0, 0.0 )
+rightq  = euler2Quaternion( -1.0, 0.0, 0.0 )
+upq     = euler2Quaternion( 0.0, 1.0, 0.0 )
+downq   = euler2Quaternion( 0.0, -1.0, 0.0 )
+rleftq  = euler2Quaternion( 0.0, 0.0, 1.0 )
+rrightq = euler2Quaternion( 0.0, 0.0, -1.0 )
+
+
+def initGL( width, height ):
+    if height == 0:
+        raise Exception( "Height == 0!" )
+    
+    glViewport( 0, 0, width, height )
+    glMatrixMode( GL_PROJECTION )
+    glLoadIdentity()
+    gluPerspective( 45, 1.0 * width / height, 0.1, MAXDISTANCE )
+
+    glMatrixMode( GL_MODELVIEW )
+    glLoadIdentity()
+    glShadeModel( GL_SMOOTH )
+    # Black background
+    glClearColor( 0.0, 0.0, 0.0, 0.0 )
+    glClearDepth( 1.0 )
+    glEnable( GL_DEPTH_TEST )
+    glDepthFunc( GL_LEQUAL )
+    glHint( GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST )
+
+    glEnable( GL_TEXTURE_2D )
+    glColor4f( 1.0, 1.0, 1.0, 1.0 )
+    glBlendFunc( GL_SRC_ALPHA, GL_ONE )
+
+    # Right now we just a default light...
+    glLightfv( GL_LIGHT1, GL_AMBIENT, (0.3, 0.3, 0.3, 1.0) )
+    glLightfv( GL_LIGHT1, GL_DIFFUSE, (1.0, 1.0, 1.0, 1.0) )
+    glLightfv( GL_LIGHT1, GL_POSITION, (0.0, 0.0, 0.0, 1.0) )
+    glEnable( GL_LIGHT1 )
+
+xrot = 0.0
+yrot = 0.0
+zrot = -2.0
+
+def drawStuff():
+    global CAMERAROT, CAMERALOC
+    global cameraq
+    global xrot, yrot, zrot
+
+    #global xrot, yrot, zrot
+    #global q
+
+    xtrans = -CAMERALOC[0]
+    ytrans = -CAMERALOC[1]
+    ztrans = -CAMERALOC[2]
+
+    #scenerotx = 360.0 - CAMERAROT[0]
+    #sceneroty = 360.0 - CAMERAROT[1]
+    #scenerotz = 360.0 - CAMERAROT[2]
+
+    
+    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT )
+    glLoadIdentity()
+
+    #print xrot, yrot, zrot
+
+    
+    #xrot += 1
+
+
+    # Yay, it works!  But it doesn't do what I want it to.
+    #q2 = euler2Quaternion( scenerotx, sceneroty, scenerotz )
+    #q = q.mult( q2 )
+    #theta, x, y, z = q.toAxis()
+    #glRotatef( 10.0, 1.0, 0.0, 0.0 )
+    #glRotatef( sceneroty, 0.0, 1.0, 0.0 )
+    #glRotatef( scenerotz, 0.0, 0.0, 1.0 )
+
+    #theta, x, y, z = cameraq.toAxis()
+    #print theta, x, y, z
+    #glRotatef( theta, x, y, z )
+    #
+    print xtrans, ytrans, ztrans
+
+    gluLookAt( 0.0, 0.0, -2.0, \
+               0.0, 0.0, 0.0, \
+               0.0, 0.0, 0.0 )
+
+
+
+    #glTranslatef( CAMERALOC[0], CAMERALOC[1], CAMERALOC[2] )
+
+    #glRotatef( CAMERAROT[0] * 10, 0.0, 1.0, 0.0 )
+    #glRotatef( CAMERAROT[1] * 10, 1.0, 0.0, 0.0 )
+    #glRotatef( CAMERAROT[2] * 10, 0.0, 0.0, 1.0 )
+
+
+    cubeX = 0.0
+    cubeY = 0.0
+    cubeZ = -5.0
+    
+    
+#gluLookAt( 0.0, 0.0, 0.0,
+#CAMERALOC[0], CAMERALOC[1], CAMERALOC[2], 0.0, 0.0, 0.0 )
+#cubeX, cubeY, cubeZ, 0.0, 0.0, 0.0 )
+
+
+#    glLoadIdentity()
+
+    # XXX: We may have to free the display lists!
+    #glTranslate( 0.0, 0.0, -2.0 )
+    #b = getReferenceObject( 1.0 )
+    #glCallList( b )
+
+    #glTranslatef( cubeX, cubeY, cubeZ )
+    #a = getCube( 0.5 )
+    #glCallList( a )
+
+    #glTranslatef( 1.0, 0.0, 0.0 )
+    #glCallList( a )
+
+    # ...hm.  You know, when we do it this way, we don't actually save
+    # much time...
+    # Oh well, who cares for now.
+    #glDeleteLists( a, 1 )
+    #glDeleteLists( b, 3 )
+
+    #glTranslate( xtrans, ytrans, ztrans )
+    #glTranslatef( 0.0, 0.0, -2.0 )
+    drawReferenceObject( 1.0 )
+
+#    glTranslate( cubeX, cubeY, cubeZ )
+    drawCube( 0.5 )
+#    glTranslatef( 1.0, 0.0, 0.0 )
+    #drawCube( 0.5 )
+
+    #print x, y, z
+
+
+
+
+
+    
+
+
+
+
+
+def handleEvents( event ):
+    global CAMERAROT, CAMERALOC
+    global KEYSPRESSED
+    
+    if event.type == KEYDOWN:
+        if (event.key == KB_LEFT):
+            KEYSPRESSED[KEY_LEFT] = True
+        elif (event.key == KB_RIGHT):
+            KEYSPRESSED[KEY_RIGHT] = True
+        elif (event.key == KB_UP):
+            KEYSPRESSED[KEY_UP] = True
+        elif (event.key == KB_DOWN):
+            KEYSPRESSED[KEY_DOWN] = True
+            
+        elif (event.key == KB_RLEFT):
+            KEYSPRESSED[KEY_RLEFT] = True
+        elif (event.key == KB_RRIGHT):
+            KEYSPRESSED[KEY_RRIGHT] = True
+        elif (event.key == KB_RUP):
+            KEYSPRESSED[KEY_RUP] = True
+        elif (event.key == KB_RDOWN):
+            KEYSPRESSED[KEY_RDOWN] = True
+
+        elif (event.key == KB_FWD):
+            KEYSPRESSED[KEY_FWD] = True
+        elif (event.key == KB_BACK):
+            KEYSPRESSED[KEY_BACK] = True
+        elif (event.key == KB_RFWD):
+            KEYSPRESSED[KEY_RFWD] = True
+        elif (event.key == KB_RBACK):
+            KEYSPRESSED[KEY_RBACK] = True
+
+        elif event.key == K_q:
+            return False
+
+    elif event.type == KEYUP:
+        if event.key == KB_LEFT:
+            KEYSPRESSED[KEY_LEFT] = False
+        elif event.key == KB_RIGHT:
+            KEYSPRESSED[KEY_RIGHT] = False
+        elif event.key == KB_UP:
+            KEYSPRESSED[KEY_UP] = False
+        elif event.key == KB_DOWN:
+            KEYSPRESSED[KEY_DOWN] = False
+
+        elif event.key == KB_RLEFT:
+            KEYSPRESSED[KEY_RLEFT] = False
+        elif event.key == KB_RRIGHT:
+            KEYSPRESSED[KEY_RRIGHT] = False
+        elif event.key == KB_RUP:
+            KEYSPRESSED[KEY_RUP] = False
+        elif event.key == KB_RDOWN:
+            KEYSPRESSED[KEY_RDOWN] = False
+
+        elif event.key == KB_FWD:
+            KEYSPRESSED[KEY_FWD] = False
+        elif event.key == KB_BACK:
+            KEYSPRESSED[KEY_BACK] = False
+        elif event.key == KB_RFWD:
+            KEYSPRESSED[KEY_RFWD] = False
+        elif event.key == KB_RBACK:
+            KEYSPRESSED[KEY_RBACK] = False
+
+    elif event.type == QUIT:
+        return False
+
+    return True
+
+
+def main():
+    global xrot, yrot, zrot
+    videoFlags = OPENGL | DOUBLEBUF
+    screenX = 640
+    screenY = 480
+
+    pygame.init()
+    pygame.display.set_mode( (screenX, screenY), videoFlags )
+    initGL( screenX, screenY )
+
+    # Okay, it's a bit of a hack, but...
+    #pygame.key.set_repeat( 50, 0 )
+
+    frames = 0
+    ticks = pygame.time.get_ticks()
+    while True:
+        event = pygame.event.poll()
+        if not handleEvents( event ):
+            break
+
+        # Input handling!
+        cameralocinc = 0.05
+        if KEYSPRESSED[KEY_LEFT]:
+            CAMERALOC[0] -= cameralocinc
+            #print CAMERAROT
+        if KEYSPRESSED[KEY_RIGHT]:
+            CAMERALOC[0] += cameralocinc
+            #print CAMERAROT
+        if KEYSPRESSED[KEY_UP]:
+            CAMERALOC[1] += cameralocinc
+            #print CAMERAROT
+        if KEYSPRESSED[KEY_DOWN]:
+            CAMERALOC[1] -= cameralocinc
+            #print CAMERAROT
+        if KEYSPRESSED[KEY_FWD]:
+            CAMERALOC[2] -= cameralocinc
+            #print CAMERAROT
+        if KEYSPRESSED[KEY_BACK]:
+            CAMERALOC[2] += cameralocinc
+            #print CAMERAROT
+
+
+        rotmag = 1.0
+        global cameraq
+        global leftq, rightq, upq, downq, rleftq, rrightq
+        if KEYSPRESSED[KEY_RLEFT]:
+            cameraq.normalize()
+            matrix = cameraq.toMatrix()
+            vector = [matrix[1][0], matrix[1][1], matrix[1][2]]
+            rotq = Quaternion()
+            rotq.fromAxis( -1.0, vector[0], vector[1], vector[2] )
+            rotq.normalize()
+            cameraq = cameraq.mult( rotq )
+            cameraq.normalize()
+
+            xrot += 1
+
+            #cameraq = cameraq.mult( rightq )
+            print cameraq.toAxis()
+            #CAMERAROT[1] += cameralocinc * 50
+            #print CAMERAROT
+        if KEYSPRESSED[KEY_RRIGHT]:
+            cameraq.normalize()
+            matrix = cameraq.toMatrix()
+            vector = [matrix[1][0], matrix[1][1], matrix[1][2]]
+            rotq = Quaternion()
+            rotq.fromAxis( 1.0, vector[0], vector[1], vector[2] )
+            rotq.normalize()
+            cameraq = cameraq.mult( rotq )
+            cameraq.normalize()
+
+            xrot -= 1
+
+            #cameraq = cameraq.mult( rightq )
+            print cameraq.toAxis()
+            #CAMERAROT[1] -= cameralocinc * 50
+            #print CAMERAROT
+        if KEYSPRESSED[KEY_RUP]:
+            #cameraq = cameraq.mult( leftq )
+            cameraq.normalize()
+            matrix = cameraq.toMatrix()
+            vector = [matrix[0][0], matrix[0][1], matrix[0][2]]
+            rotq = euler2Quaternion( 0.0, 0.0, 0.0 )
+            rotq.fromAxis( 1.0, vector[0], vector[1], vector[2] )
+            rotq.normalize()
+            cameraq = cameraq.mult( rotq )
+            cameraq.normalize()
+            print cameraq.toAxis()
+            #CAMERAROT[0] += cameralocinc * 50
+            #print CAMERAROT
+        if KEYSPRESSED[KEY_RDOWN]:
+            #cameraq = cameraq.mult( rightq )
+            cameraq.normalize()
+            matrix = cameraq.toMatrix()
+            vector = [matrix[0][0], matrix[0][1], matrix[0][2]]
+            rotq = euler2Quaternion( 0.0, 0.0, 0.0 )
+            rotq.fromAxis( -1.0, vector[0], vector[1], vector[2] )
+            rotq.normalize()
+            cameraq = cameraq.mult( rotq )
+            cameraq.normalize()
+            print cameraq.toAxis()
+            #CAMERAROT[0] -= cameralocinc * 50
+            #print CAMERAROT
+        if KEYSPRESSED[KEY_RFWD]:
+            #cameraq = cameraq.mult( rleftq )
+            cameraq.normalize()
+            matrix = cameraq.toMatrix()
+            vector = [matrix[2][0], matrix[2][1], matrix[2][2]]
+            rotq = euler2Quaternion( 0.0, 0.0, 0.0 )
+            rotq.fromAxis( 1.0, vector[0], vector[1], vector[2] )
+            rotq.normalize()
+            cameraq = cameraq.mult( rotq )
+            cameraq.normalize()
+            print cameraq.toAxis()
+            #CAMERAROT[2] += cameralocinc * 10
+            #print CAMERAROT
+        if KEYSPRESSED[KEY_RBACK]:
+            #cameraq = cameraq.mult( rrightq )
+            cameraq.normalize()
+            matrix = cameraq.toMatrix()
+            vector = [matrix[2][0], matrix[2][1], matrix[2][2]]
+            rotq = euler2Quaternion( 0.0, 0.0, 0.0 )
+            rotq.fromAxis( -1.0, vector[0], vector[1], vector[2] )
+            rotq.normalize()
+            cameraq = cameraq.mult( rotq )
+            cameraq.normalize()
+            print cameraq.toAxis()
+            #CAMERAROT[2] -= cameralocinc * 10
+            #print CAMERAROT
+
+
+
+
+
+        drawStuff()
+        pygame.display.flip()
+        frames += 1
+
+    print "FPS: %d" % ((frames * 1000) / (pygame.time.get_ticks() - ticks))
+
+                   
+
+if __name__ == '__main__':
+    main()

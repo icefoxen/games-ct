@@ -1,0 +1,25 @@
+I have used your game engine, and it is good.
+However, it could be better.  Here's a few requests:
+1) Make the keyboard event handling better.  Right now, to check whether a key
+is pressed, you can use either SEvent.KeyInput.Char (and not be able to use
+keys like F1 or Alt) or SEvent.KeyInput.Key (and not be able to use keys like
+; and ]).  This is more than slightly horrible.  I advise you take a look at
+the SDL keyboard interface; it's a good one.
+2) Please, please, please make the internal string handling more consistant.
+You have your own string class, woohoo.  You never seem to use it.  Sometimes
+you use char* strings.  Sometimes you use wchar_t* strings.  Sometimes you can
+get away with using the normal C++ std::string.  When can you use which?  I
+dunno.  I just have to look at the docs and guess.  Pretty please make this
+better.
+
+Oh, and out of curiousity, why do you distribute the documentation as a .chm
+file?  It seems like it does everything HTML can do, except it's more annoying
+to read.  What if I want to work on my game over SSH (I do)?
+
+Now that I've complained a lot, let me say that the game engine rocks.  It has
+let me do more in a week than I would normally have been able to do in a
+month, and it has taught me a lot about making 3D games.  Thank you.
+
+
+
+XXX: #1, at least, I can probably fix myself...

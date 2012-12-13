@@ -1,0 +1,316 @@
+# CharbleTwinsty.py
+# The main game file
+# Yay!
+
+
+from OpenGL.GL import *
+from OpenGL.GLU import *
+
+import pygame
+from pygame.locals import *
+
+from Input import *
+from MeshLoader import *
+from Quaternion import *
+from Vector3D import *
+
+# Max distance = 1000 km
+KM = 1000.0
+MAXDISTANCE = 1000 * KM
+
+# Objects collide with things
+OBJECTS = []
+# Effects don't.
+EFFECTS = []
+
+#CAMERALOC = [0.0, 0.0, 0.0]
+#CAMERAROT = [0.0, 0.0, 0.0]
+CAMERALOC = Vector3D()
+
+cameraq = euler2Quaternion( 0.0, 0.0, 0.0 )
+#leftq   = euler2Quaternion( 1.0, 0.0, 0.0 )
+#rightq  = euler2Quaternion( -1.0, 0.0, 0.0 )
+#upq     = euler2Quaternion( 0.0, 1.0, 0.0 )
+#downq   = euler2Quaternion( 0.0, -1.0, 0.0 )
+#rleftq  = euler2Quaternion( 0.0, 0.0, 1.0 )
+#rrightq = euler2Quaternion( 0.0, 0.0, -1.0 )
+
+
+def initGL( width, height ):
+    if height == 0:
+        raise Exception( "Height == 0!" )
+    
+    glViewport( 0, 0, width, height )
+    glMatrixMode( GL_PROJECTION )
+    glLoadIdentity()
+    gluPerspective( 45, 1.0 * width / height, 0.1, MAXDISTANCE )
+
+    glMatrixMode( GL_MODELVIEW )
+    glLoadIdentity()
+    glShadeModel( GL_SMOOTH )
+    # Black background
+    glClearColor( 0.0, 0.0, 0.0, 0.0 )
+    glClearDepth( 1.0 )
+    glEnable( GL_DEPTH_TEST )
+    glDepthFunc( GL_LEQUAL )
+    glHint( GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST )
+
+    glEnable( GL_TEXTURE_2D )
+    glColor4f( 1.0, 1.0, 1.0, 1.0 )
+    glBlendFunc( GL_SRC_ALPHA, GL_ONE )
+
+    # Right now we just a default light...
+    glLightfv( GL_LIGHT1, GL_AMBIENT, (0.3, 0.3, 0.3, 1.0) )
+    glLightfv( GL_LIGHT1, GL_DIFFUSE, (1.0, 1.0, 1.0, 1.0) )
+    glLightfv( GL_LIGHT1, GL_POSITION, (0.0, 0.0, 0.0, 1.0) )
+    glEnable( GL_LIGHT1 )
+
+
+def drawStuff():
+    global CAMERALOC
+    global cameraq
+
+    offsetx = 0.0
+    offsety = 0.0
+    offsetz = 2.0
+
+    # We grab the object's rotation matrix...
+    
+    #objvectorx = Vector3D( 1.0, 0.0, 0.0 )
+    #objvectory = Vector3D( 0.0, 1.0, 0.0 )
+    #objvectorz = Vector3D( 0.0, 0.0, 1.0 )
+
+    matrix = cameraq.toMatrix()
+    objvectorx = matrix[0]
+    objvectory = matrix[1]
+    objvectorz = matrix[2]
+
+    #objvectorx.invert()
+    #objvectory.invert()
+    #objvectorz.invert()
+
+    cameratop = objvectory.clone()
+
+    # We turn the angle vectors into offset vectors from
+    # the object.
+    objvectorx.mulNumber( offsetx )
+    objvectory.mulNumber( offsety )
+    objvectorz.mulNumber( offsetz )
+
+    # Now to get one offset vector, we add all three of 'em together
+    objvectorx.addVector( objvectory )
+    objvectorx.addVector( objvectorz )
+
+    # Now we have an offset vector we can add to the object's position
+    # vector
+    posvec = objvectorx
+
+    #posvec.addVector( CAMERALOC )
+
+
+    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT )
+    glLoadIdentity()
+    
+    gluLookAt( #0.0, 0.0, 5.0, \
+               posvec.x, posvec.y, posvec.z, \
+               CAMERALOC.x, CAMERALOC.y, CAMERALOC.z, \
+               cameratop.x, cameratop.y, cameratop.z )
+               #0.0, 1.0, 0.0 )
+    print "CT: " + str( cameratop )
+    print "CL: " + str( CAMERALOC )
+    print "PV: " + str( posvec )
+    
+    
+    # OKAY!  It works.
+    # To do:
+    # 1) Make camera hold position relative to object
+    # 2) Make camera able to move and look around at other objects?
+    # 3) Make object move along it's own axes instead of the absolute
+    #
+    
+
+    glTranslate( CAMERALOC.x, CAMERALOC.y, CAMERALOC.z )
+    theta, vec = cameraq.toAxis()
+    glRotatef( theta, vec.x, vec.y, vec.z )
+    drawReferenceObject( 1.0 )
+    
+    #glTranslate( -CAMERALOC.x, -CAMERALOC.y, -CAMERALOC.z )
+    glTranslate( posvec.x, posvec.y, posvec.z )
+    drawReferenceObject( 0.5 )
+
+
+
+
+
+    # ....oh.  I think this works because glTranslate does
+    # the necessary offset junk for us.
+    # Um.
+
+
+    #glTranslate( -posvec.x, -posvec.y, -posvec.z )
+
+
+    
+
+
+
+
+    
+
+
+
+
+
+def handleEvents( event ):
+    global CAMERAROT, CAMERALOC
+    global KEYSPRESSED
+    
+    if event.type == KEYDOWN:
+        if (event.key == KB_LEFT):
+            KEYSPRESSED[KEY_LEFT] = True
+        elif (event.key == KB_RIGHT):
+            KEYSPRESSED[KEY_RIGHT] = True
+        elif (event.key == KB_UP):
+            KEYSPRESSED[KEY_UP] = True
+        elif (event.key == KB_DOWN):
+            KEYSPRESSED[KEY_DOWN] = True
+        elif (event.key == KB_FWD):
+            KEYSPRESSED[KEY_FWD] = True
+        elif (event.key == KB_BACK):
+            KEYSPRESSED[KEY_BACK] = True
+
+            
+        elif (event.key == KB_YAWN):
+            KEYSPRESSED[KEY_YAWN] = True
+        elif (event.key == KB_YAWP):
+            KEYSPRESSED[KEY_YAWP] = True
+        elif (event.key == KB_PITCHP):
+            KEYSPRESSED[KEY_PITCHP] = True
+        elif (event.key == KB_PITCHN):
+            KEYSPRESSED[KEY_PITCHN] = True
+        elif (event.key == KB_ROLLP):
+            KEYSPRESSED[KEY_ROLLP] = True
+        elif (event.key == KB_ROLLN):
+            KEYSPRESSED[KEY_ROLLN] = True
+
+        elif event.key == K_q:
+            return False
+
+    elif event.type == KEYUP:
+        if event.key == KB_LEFT:
+            KEYSPRESSED[KEY_LEFT] = False
+        elif event.key == KB_RIGHT:
+            KEYSPRESSED[KEY_RIGHT] = False
+        elif event.key == KB_UP:
+            KEYSPRESSED[KEY_UP] = False
+        elif event.key == KB_DOWN:
+            KEYSPRESSED[KEY_DOWN] = False
+        elif event.key == KB_FWD:
+            KEYSPRESSED[KEY_FWD] = False
+        elif event.key == KB_BACK:
+            KEYSPRESSED[KEY_BACK] = False
+
+        elif event.key == KB_YAWN:
+            KEYSPRESSED[KEY_YAWN] = False
+        elif event.key == KB_YAWP:
+            KEYSPRESSED[KEY_YAWP] = False
+        elif event.key == KB_PITCHP:
+            KEYSPRESSED[KEY_PITCHP] = False
+        elif event.key == KB_PITCHN:
+            KEYSPRESSED[KEY_PITCHN] = False
+
+        elif event.key == KB_ROLLP:
+            KEYSPRESSED[KEY_ROLLP] = False
+        elif event.key == KB_ROLLN:
+            KEYSPRESSED[KEY_ROLLN] = False
+
+    elif event.type == QUIT:
+        return False
+
+    return True
+
+
+def main():
+    global xrot, yrot, zrot
+    videoFlags = OPENGL | DOUBLEBUF
+    screenX = 640
+    screenY = 480
+
+    pygame.init()
+    pygame.display.set_mode( (screenX, screenY), videoFlags )
+    initGL( screenX, screenY )
+
+    # Okay, it's a bit of a hack, but...
+    #pygame.key.set_repeat( 50, 0 )
+
+    frames = 0
+    ticks = pygame.time.get_ticks()
+    while True:
+        event = pygame.event.poll()
+        if not handleEvents( event ):
+            break
+
+        # Input handling!
+        cameralocinc = 0.05
+        if KEYSPRESSED[KEY_LEFT]:
+            CAMERALOC.x -= cameralocinc
+            print CAMERALOC
+        if KEYSPRESSED[KEY_RIGHT]:
+            CAMERALOC.x += cameralocinc
+            print CAMERALOC
+        if KEYSPRESSED[KEY_UP]:
+            CAMERALOC.y += cameralocinc
+            print CAMERALOC
+        if KEYSPRESSED[KEY_DOWN]:
+            CAMERALOC.y -= cameralocinc
+            print CAMERALOC
+        if KEYSPRESSED[KEY_FWD]:
+            CAMERALOC.z -= cameralocinc
+            print CAMERALOC
+        if KEYSPRESSED[KEY_BACK]:
+            CAMERALOC.z += cameralocinc
+            print CAMERALOC
+
+
+        rotmag = 1.0
+        global cameraq
+        global leftq, rightq, upq, downq, rleftq, rrightq
+
+        def doRotation( vector ):
+            global cameraq
+            cameraq.normalize()
+            rotq = Quaternion()
+            rotq.fromAxis( -1.0, vector.x, vector.y, vector.z )
+            rotq.normalize()
+            cameraq = cameraq.mult( rotq )
+            cameraq.normalize()
+
+            print cameraq.toAxis()
+            
+        if KEYSPRESSED[KEY_YAWP]:
+            doRotation( Vector3D( 1.0, 0.0, 0.0 ) )
+        if KEYSPRESSED[KEY_YAWN]:
+            doRotation( Vector3D( -1.0, 0.0, 0.0 ) )
+        if KEYSPRESSED[KEY_PITCHP]:
+            doRotation( Vector3D( 0.0, 1.0, 0.0 ) )
+        if KEYSPRESSED[KEY_PITCHN]:
+            doRotation( Vector3D( 0.0, -1.0, 0.0 ) )
+        if KEYSPRESSED[KEY_ROLLP]:
+            doRotation( Vector3D( 0.0, 0.0, 1.0 ) )
+        if KEYSPRESSED[KEY_ROLLN]:
+            doRotation( Vector3D( 0.0, 0.0, -1.0 ) )
+
+
+
+
+
+        drawStuff()
+        pygame.display.flip()
+        frames += 1
+
+    print "FPS: %d" % ((frames * 1000) / (pygame.time.get_ticks() - ticks))
+
+                   
+
+if __name__ == '__main__':
+    main()

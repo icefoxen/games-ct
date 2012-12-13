@@ -1,0 +1,12 @@
+Mesh formats:
+.obj --wavefront maya
+.3ds --3dstudio max
+.md2 --quake2 model
+.csm --cartography shop 4
+.dae --collada
+.dmf --DeleD
+.x   --directx
+.ms3d --milkshape
+.bsp --quake3 level
+
+and a few others

@@ -1,0 +1,10 @@
+#!/bin/sh
+
+CPP=g++
+INCLUDES="-I./include -I./irrlicht-0.14.0/include/ -I/usr/X11R6/include/"
+
+OUTFILE=CharbleTwinsty
+
+SOURCES="main.cpp input.cpp controlInterface.cpp config.cpp spaceobj.cpp"
+
+$CPP -c $INCLUDES $SOURCES
